@@ -1,0 +1,65 @@
+2024-10-30 09:15:23 INFO GET /api/login username=john123 status=200 trace_id=abc-123 
+2024-10-30 09:15:24 INFO User john123 logged in successfully from IP 192.168.1.100
+2024-10-30 09:15:30 INFO GET /api/dashboard username=john123 status=200 trace_id=abc-124
+2024-10-30 09:15:45 INFO POST /api/profile username=john123 status=200 trace_id=abc-125
+2024-10-30 09:16:00 INFO GET /api/products username=john123 status=200 trace_id=abc-126
+2024-10-30 09:16:15 INFO POST /api/cart/add username=john123 status=200 trace_id=abc-127 item_id=prod_456
+2024-10-30 09:16:30 ERROR POST /api/cart/checkout username=john123 status=500 trace_id=abc-128 Exception: PaymentGatewayException - Connection timeout
+2024-10-30 09:16:31 ERROR Failed to process payment for user john123, trace_id=abc-128
+2024-10-30 09:16:45 INFO POST /api/cart/checkout username=john123 status=500 trace_id=abc-129 Retry attempt 1 failed
+2024-10-30 09:17:00 ERROR POST /api/cart/checkout username=john123 status=500 trace_id=abc-130 PaymentGatewayException: Service unavailable
+
+2024-10-30 09:20:15 INFO GET /api/login username=alice456 status=200 trace_id=def-201 
+2024-10-30 09:20:16 INFO User alice456 logged in successfully from IP 192.168.1.105
+2024-10-30 09:20:25 INFO GET /api/dashboard username=alice456 status=200 trace_id=def-202
+2024-10-30 09:20:40 INFO POST /api/profile username=alice456 status=200 trace_id=def-203
+2024-10-30 09:20:55 INFO GET /api/products username=alice456 status=200 trace_id=def-204
+2024-10-30 09:21:10 INFO POST /api/cart/add username=alice456 status=200 trace_id=def-205 item_id=prod_789
+2024-10-30 09:21:25 INFO POST /api/cart/checkout username=alice456 status=200 trace_id=def-206
+2024-10-30 09:21:26 INFO Payment processed successfully for user alice456 amount=$99.99
+
+2024-10-30 09:25:00 INFO GET /api/login username=bob789 status=200 trace_id=ghi-301
+2024-10-30 09:25:01 INFO User bob789 logged in successfully from IP 192.168.1.110
+2024-10-30 09:25:10 INFO GET /api/dashboard username=bob789 status=200 trace_id=ghi-302
+2024-10-30 09:25:25 WARN GET /api/products username=bob789 status=429 trace_id=ghi-303 Rate limit exceeded
+2024-10-30 09:25:30 INFO GET /api/products username=bob789 status=200 trace_id=ghi-304
+2024-10-30 09:25:45 INFO POST /api/cart/add username=bob789 status=200 trace_id=ghi-305 item_id=prod_123
+2024-10-30 09:26:00 ERROR POST /api/cart/checkout username=bob789 status=500 trace_id=ghi-306 DatabaseException: Connection pool exhausted
+2024-10-30 09:26:01 ERROR Failed to save order for user bob789, trace_id=ghi-306
+
+2024-10-30 09:30:00 INFO GET /api/login username=charlie321 status=200 trace_id=jkl-401
+2024-10-30 09:30:01 INFO User charlie321 logged in successfully from IP 192.168.1.115
+2024-10-30 09:30:15 INFO GET /api/dashboard username=charlie321 status=200 trace_id=jkl-402
+2024-10-30 09:30:30 INFO GET /api/products username=charlie321 status=200 trace_id=jkl-403
+2024-10-30 09:30:45 INFO POST /api/cart/add username=charlie321 status=200 trace_id=jkl-404 item_id=prod_555
+2024-10-30 09:31:00 INFO POST /api/cart/checkout username=charlie321 status=200 trace_id=jkl-405
+2024-10-30 09:31:01 INFO Payment processed successfully for user charlie321 amount=$149.99
+
+2024-10-30 09:35:00 INFO GET /api/login username=john123 status=200 trace_id=abc-131
+2024-10-30 09:35:01 INFO User john123 logged in again from IP 192.168.1.100
+2024-10-30 09:35:10 INFO GET /api/dashboard username=john123 status=200 trace_id=abc-132
+2024-10-30 09:35:25 INFO GET /api/cart username=john123 status=200 trace_id=abc-133 Retrieved abandoned cart
+2024-10-30 09:35:40 ERROR POST /api/cart/checkout username=john123 status=500 trace_id=abc-134 PaymentGatewayException: Still experiencing service issues
+2024-10-30 09:35:41 ERROR Checkout failed again for user john123, trace_id=abc-134
+
+2024-10-30 09:40:00 INFO GET /api/login username=diana555 status=200 trace_id=mno-501
+2024-10-30 09:40:01 INFO User diana555 logged in successfully from IP 192.168.1.120
+2024-10-30 09:40:15 INFO GET /api/dashboard username=diana555 status=200 trace_id=mno-502
+2024-10-30 09:40:30 INFO GET /api/products username=diana555 status=200 trace_id=mno-503
+2024-10-30 09:40:45 INFO POST /api/cart/add username=diana555 status=200 trace_id=mno-504 item_id=prod_888
+2024-10-30 09:41:00 INFO POST /api/cart/checkout username=diana555 status=200 trace_id=mno-505
+2024-10-30 09:41:01 INFO Payment processed successfully for user diana555 amount=$79.99
+
+2024-10-30 09:45:00 ERROR System alert: PaymentGateway service health check failed
+2024-10-30 09:45:01 ERROR Multiple checkout failures detected in last 30 minutes
+2024-10-30 09:45:02 WARN Affected users: john123, bob789
+2024-10-30 09:45:03 INFO Escalating to on-call engineer
+
+2024-10-30 09:50:00 INFO PaymentGateway service restored
+2024-10-30 09:50:01 INFO Retry mechanism initiated for failed transactions
+
+2024-10-30 09:50:15 INFO GET /api/login username=john123 status=200 trace_id=abc-135
+2024-10-30 09:50:16 INFO User john123 attempting checkout again
+2024-10-30 09:50:30 INFO POST /api/cart/checkout username=john123 status=200 trace_id=abc-136
+2024-10-30 09:50:31 INFO Payment processed successfully for user john123 amount=$199.99
+2024-10-30 09:50:32 INFO Issue resolved for user john123
